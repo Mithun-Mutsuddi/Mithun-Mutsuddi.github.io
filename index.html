@@ -17,7 +17,12 @@
 		<title>Mithun Mutsuddi, CA(cc) | Financial Analyst & Audit Professional</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		
 		<link rel="stylesheet" href="assets/css/main.css" />
+		
+		<!-- Font Awesome 6 (For Social Media Icons) -->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
 		<!-- Google Fonts -->
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -247,6 +252,24 @@
 				font-size: 0.9em;
 				color: var(--primary-color);
 			}
+
+			/* Custom Direct Feedback Social Buttons */
+			.social-comment-btn {
+				display: inline-flex;
+				align-items: center;
+				gap: 8px;
+				padding: 10px 18px;
+				border-radius: 6px;
+				color: #fff !important;
+				font-weight: 600;
+				font-size: 0.88em;
+				text-decoration: none !important;
+				border: none !important;
+				transition: opacity 0.2s ease;
+			}
+			.social-comment-btn:hover {
+				opacity: 0.9;
+			}
 		</style>
 	</head>
 	<body class="is-preload">
@@ -279,7 +302,7 @@
 						<li><a href="#gallery">Gallery</a></li>
 						<li><a href="#videos">Videos</a></li>
 						<li><a href="#insights">Articles</a></li>
-						<li><a href="#comments">Comments</a></li>
+						<li><a href="#comments">Feedback</a></li>
 						<li><a href="#contact">Contact</a></li>
 					</ul>
 				</nav>
@@ -550,7 +573,7 @@
 							<div class="col-6 col-12-small">
 								<div class="testimonial-card">
 									<p class="testimonial-quote">"A highly reliable professional in financial control and inventory compliance. His ethical standards and ability to resolve critical accounting issues are commendable."</p>
-									<p class="testimonial-author">— Head of Finance &amp; Accounts<br /><small style="color: #64748b;">Soler Electro Bangladesh Limited</small></p>
+									<p class="testimonial-author">— Head of Finance &amp; Accounts<br /><small style="color: #64748b;">Solar Electro Bangladesh Limited</small></p>
 								</div>
 							</div>
 						</div>
@@ -597,7 +620,7 @@
 									<a href="https://drive.google.com/file/d/1RZuHMCSlzOzmnspxNrvX63FhtmxKrDiO/view?usp=sharing" target="_blank" style="border: none;">
 										<img src="images/thumbs/01.jpg" alt="Featured Video" style="width: 100%; height: auto; display: block; opacity: 0.75;" />
 										<div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: #fff; font-size: 48px;">
-											<i class="icon solid fa-play-circle"></i>
+											<i class="fa-solid fa-circle-play"></i>
 										</div>
 									</a>
 								</div>
@@ -627,16 +650,28 @@
 						</div>
 					</section>
 
-				<!-- Comments & Feedback Section -->
+				<!-- Comments & Direct Social Feedback Section -->
 					<section id="comments">
 						<h2>Comments &amp; Feedback</h2>
-						<script src="https://utteranc.es/client.js"
-						        repo="mithun-mutsuddi/mithun-mutsuddi.github.io"
-						        issue-term="pathname"
-						        theme="github-light"
-						        crossorigin="anonymous"
-						        async>
-						</script>
+						<p>Feel free to connect or share your feedback directly on your preferred platform:</p>
+						
+						<div style="display: flex; gap: 12px; flex-wrap: wrap; margin-top: 15px;">
+							<a href="https://wa.me/8801882191626" target="_blank" class="social-comment-btn" style="background: #25D366;">
+								<i class="fa-brands fa-whatsapp fa-lg"></i> WhatsApp
+							</a>
+							<a href="https://www.linkedin.com/in/mithun-mutsuddi" target="_blank" class="social-comment-btn" style="background: #0A66C2;">
+								<i class="fa-brands fa-linkedin fa-lg"></i> LinkedIn
+							</a>
+							<a href="https://www.facebook.com/share/1CWAwqJrhn" target="_blank" class="social-comment-btn" style="background: #1877F2;">
+								<i class="fa-brands fa-facebook-f fa-lg"></i> Facebook
+							</a>
+							<a href="https://www.instagram.com/mithun_mutsuddi" target="_blank" class="social-comment-btn" style="background: #E4405F;">
+								<i class="fa-brands fa-instagram fa-lg"></i> Instagram
+							</a>
+							<a href="mailto:mithuncacc96@gmail.com" class="social-comment-btn" style="background: #ea4335;">
+								<i class="fa-solid fa-envelope fa-lg"></i> Direct Email
+							</a>
+						</div>
 					</section>
 
 				<!-- Contact Section -->
@@ -690,12 +725,10 @@
 						<li><a href="mailto:mithuncacc96@gmail.com" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
 					</ul>
 					
-					<!-- Live Visitor Counter -->
-					<div style="text-align: center; margin: 20px 0;">
-					    <p style="font-size: 0.9em; margin-bottom: 5px; color: #cbd5e1;">Total Website Visitors</p>
-					    <a href="https://visitorcounterpiston.com" target="_blank">
-					        <img src="https://counter.sstatic.net/counter.png?page=mithun-mutsuddi.github.io" alt="Visitor Counter" />
-					    </a>
+					<!-- Live Working Visitor Counter -->
+					<div style="text-align: center; margin: 25px 0 15px 0;">
+						<p style="font-size: 0.85em; margin-bottom: 6px; color: #94a3b8; letter-spacing: 0.05em; text-transform: uppercase;">Total Website Visits</p>
+						<img src="https://api.visitorbadge.io/api/visitors?path=mithun-mutsuddi.github.io&countColor=%232563eb&style=flat" alt="Live Visitor Counter" style="border-radius: 4px; box-shadow: 0 2px 5px rgba(0,0,0,0.2);" />
 					</div>
 
 					<ul class="copyright">
