@@ -10,7 +10,6 @@
 		  window.dataLayer = window.dataLayer || [];
 		  function gtag(){dataLayer.push(arguments);}
 		  gtag('js', new Date());
-
 		  gtag('config', 'G-QSZG0VWWRC');
 		</script>
 
@@ -20,7 +19,7 @@
 		
 		<link rel="stylesheet" href="assets/css/main.css" />
 		
-		<!-- Font Awesome 6 (For Social Media Icons) -->
+		<!-- Font Awesome 6 (For Social Media & UI Icons) -->
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
 
 		<!-- Google Fonts -->
@@ -79,7 +78,7 @@
 				top: 0;
 				background: rgba(255, 255, 255, 0.95);
 				backdrop-filter: blur(8px);
-				z-index: 1000;
+				z-index: 999;
 				border-bottom: 1px solid var(--card-border);
 				padding: 12px 0;
 				margin-bottom: 30px;
@@ -157,6 +156,82 @@
 				padding: 2px 8px;
 				border-radius: 4px;
 				margin-left: 8px;
+			}
+
+			/* CV Preview & Permission Container */
+			.cv-container {
+				background: #ffffff;
+				border: 1px solid var(--card-border);
+				border-radius: 8px;
+				padding: 20px;
+				margin-top: 20px;
+				display: flex;
+				flex-wrap: wrap;
+				gap: 20px;
+				align-items: center;
+			}
+			.cv-preview-box {
+				flex: 1;
+				min-width: 260px;
+				max-width: 340px;
+				border: 2px dashed #cbd5e1;
+				border-radius: 6px;
+				padding: 10px;
+				text-align: center;
+				background: #f8fafc;
+				position: relative;
+			}
+			.cv-preview-box img {
+				width: 100%;
+				height: auto;
+				border-radius: 4px;
+				box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+			}
+			.cv-badge {
+				position: absolute;
+				top: 15px;
+				right: 15px;
+				background: #10b981;
+				color: #fff;
+				font-size: 0.75em;
+				font-weight: 700;
+				padding: 4px 8px;
+				border-radius: 4px;
+				text-transform: uppercase;
+			}
+			.cv-info-box {
+				flex: 2;
+				min-width: 280px;
+			}
+
+			/* Rating System Style */
+			.rating-box {
+				background: #ffffff;
+				border: 1px solid var(--card-border);
+				border-radius: 8px;
+				padding: 25px;
+				margin-top: 15px;
+			}
+			.star-rating {
+				display: flex;
+				flex-direction: row-reverse;
+				justify-content: flex-end;
+				gap: 8px;
+				margin: 10px 0 20px 0;
+			}
+			.star-rating input {
+				display: none;
+			}
+			.star-rating label {
+				font-size: 2em;
+				color: #cbd5e1;
+				cursor: pointer;
+				transition: color 0.2s ease;
+			}
+			.star-rating input:checked ~ label,
+			.star-rating label:hover,
+			.star-rating label:hover ~ label {
+				color: #f59e0b;
 			}
 
 			/* Skills Badge Grid */
@@ -253,7 +328,7 @@
 				color: var(--primary-color);
 			}
 
-			/* Custom Direct Feedback Social Buttons */
+			/* Social Buttons */
 			.social-comment-btn {
 				display: inline-flex;
 				align-items: center;
@@ -269,6 +344,34 @@
 			}
 			.social-comment-btn:hover {
 				opacity: 0.9;
+			}
+
+			/* Modal Window Styles */
+			.modal-overlay {
+				position: fixed;
+				top: 0; left: 0; width: 100%; height: 100%;
+				background: rgba(15, 23, 42, 0.75);
+				display: none;
+				justify-content: center;
+				align-items: center;
+				z-index: 10000;
+			}
+			.modal-content {
+				background: #ffffff;
+				padding: 30px;
+				border-radius: 8px;
+				max-width: 500px;
+				width: 90%;
+				position: relative;
+				box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+			}
+			.close-modal {
+				position: absolute;
+				top: 15px;
+				right: 15px;
+				font-size: 1.2em;
+				cursor: pointer;
+				color: var(--text-muted);
 			}
 		</style>
 	</head>
@@ -295,6 +398,7 @@
 				<nav class="top-nav">
 					<ul>
 						<li><a href="#about">About</a></li>
+						<li><a href="#cv-access">CV Preview</a></li>
 						<li><a href="#skills">Skills</a></li>
 						<li><a href="#experience">Experience</a></li>
 						<li><a href="#clients">Audit Clients</a></li>
@@ -302,6 +406,7 @@
 						<li><a href="#gallery">Gallery</a></li>
 						<li><a href="#videos">Videos</a></li>
 						<li><a href="#insights">Articles</a></li>
+						<li><a href="#rating">Rate Me</a></li>
 						<li><a href="#comments">Feedback</a></li>
 						<li><a href="#contact">Contact</a></li>
 					</ul>
@@ -315,9 +420,33 @@
 						<p style="font-size: 1.05em; line-height: 1.7; color: var(--text-dark);">
 							Detail-oriented, analytical, and ethical professional with over <strong>8.5+ years of hands-on experience</strong> in financial management, statutory &amp; forensic auditing, internal control, and regulatory compliance. Proven track record in optimizing ERP systems, minimizing operational risks, and improving financial integrity across diverse industries including Manufacturing, RMG, NGOs, and Corporate entities.
 						</p>
-						<ul class="actions">
-							<li><a href="my-cv.pdf" download class="button primary icon solid fa-download">Download Curriculum Vitae (CV)</a></li>
-						</ul>
+					</section>
+
+				<!-- CV Preview & Controlled Access Section -->
+					<section id="cv-access">
+						<h2>Curriculum Vitae (CV) Access</h2>
+						<div class="cv-container">
+							<div class="cv-preview-box">
+								<span class="cv-badge">Page 1 Preview</span>
+								<!-- Replace images/cv-page-1.jpg with your CV Page 1 Image -->
+								<img src="images/cv-page-1.jpg" alt="CV Page 1 Preview" onerror="this.src='https://via.placeholder.com/300x420?text=CV+Page+1+Public+Preview';" />
+								<p style="font-size: 0.8em; margin-top: 8px; color: var(--text-muted);">Public View: Page 1 Only</p>
+							</div>
+							<div class="cv-info-box">
+								<h3 style="margin-bottom: 8px;"><i class="fa-solid fa-lock" style="color: var(--accent-color);"></i> Access Restricted CV Download</h3>
+								<p style="font-size: 0.95em; color: var(--text-muted); line-height: 1.6;">
+									To protect confidential personal details and corporate references, direct downloading of the complete CV is restricted. The 1st page is publicly viewable on the left.
+								</p>
+								<p style="font-size: 0.9em; font-weight: 600; color: var(--primary-color);">
+									Need full access for hiring or professional evaluation?
+								</p>
+								<ul class="actions">
+									<li>
+										<button onclick="openCvModal()" class="button primary icon solid fa-key">Request Full CV Access Permission</button>
+									</li>
+								</ul>
+							</div>
+						</div>
 					</section>
 
 				<!-- Skills & Core Competencies Section -->
@@ -395,11 +524,11 @@
 						
 						<!-- Interactive Category Filters -->
 						<div class="filter-btn-group">
-							<button class="filter-btn active" onclick="filterClients('all')">All Clients (32)</button>
-							<button class="filter-btn" onclick="filterClients('rmg')">RMG &amp; Textile</button>
-							<button class="filter-btn" onclick="filterClients('mfg')">Manufacturing &amp; Tech</button>
-							<button class="filter-btn" onclick="filterClients('ngo')">NGO &amp; Govt Projects</button>
-							<button class="filter-btn" onclick="filterClients('services')">Services &amp; Healthcare</button>
+							<button class="filter-btn active" onclick="filterClients('all', this)">All Clients (32)</button>
+							<button class="filter-btn" onclick="filterClients('rmg', this)">RMG &amp; Textile</button>
+							<button class="filter-btn" onclick="filterClients('mfg', this)">Manufacturing &amp; Tech</button>
+							<button class="filter-btn" onclick="filterClients('ngo', this)">NGO &amp; Govt Projects</button>
+							<button class="filter-btn" onclick="filterClients('services', this)">Services &amp; Healthcare</button>
 						</div>
 
 						<div class="row" id="client-grid">
@@ -650,6 +779,42 @@
 						</div>
 					</section>
 
+				<!-- NEW: Visitor Rating Section -->
+					<section id="rating">
+						<h2>Visitor Rating &amp; Review</h2>
+						<p>Your feedback matters! Please take a moment to rate my profile and professional experience.</p>
+						<div class="rating-box">
+							<form id="ratingForm" onsubmit="submitRating(event)">
+								<label style="font-weight: 600; margin-bottom: 5px; display: block;">Select Your Rating:</label>
+								<div class="star-rating">
+									<input type="radio" id="star5" name="rating" value="5" required /><label for="star5" title="5 Stars"><i class="fa-solid fa-star"></i></label>
+									<input type="radio" id="star4" name="rating" value="4" /><label for="star4" title="4 Stars"><i class="fa-solid fa-star"></i></label>
+									<input type="radio" id="star3" name="rating" value="3" /><label for="star3" title="3 Stars"><i class="fa-solid fa-star"></i></label>
+									<input type="radio" id="star2" name="rating" value="2" /><label for="star2" title="2 Stars"><i class="fa-solid fa-star"></i></label>
+									<input type="radio" id="star1" name="rating" value="1" /><label for="star1" title="1 Star"><i class="fa-solid fa-star"></i></label>
+								</div>
+								
+								<div class="row gtr-uniform gtr-50">
+									<div class="col-6 col-12-xsmall">
+										<input type="text" id="reviewerName" placeholder="Your Name" required />
+									</div>
+									<div class="col-6 col-12-xsmall">
+										<input type="text" id="reviewerCompany" placeholder="Company / Designation (Optional)" />
+									</div>
+									<div class="col-12">
+										<textarea id="reviewerComment" placeholder="Write a short review or feedback..." rows="3" required></textarea>
+									</div>
+									<div class="col-12" style="margin-top: 10px;">
+										<button type="submit" class="button primary icon solid fa-paper-plane">Submit Rating</button>
+									</div>
+								</div>
+							</form>
+							<div id="ratingSuccess" style="display:none; color: #10b981; font-weight: 600; margin-top: 15px;">
+								<i class="fa-solid fa-circle-check"></i> Thank you for rating my profile!
+							</div>
+						</div>
+					</section>
+
 				<!-- Comments & Direct Social Feedback Section -->
 					<section id="comments">
 						<h2>Comments &amp; Feedback</h2>
@@ -680,16 +845,16 @@
 						<p>Feel free to reach out for professional opportunities, financial consultancies, internal audit setups, or statutory compliance services.</p>
 						<div class="row">
 							<div class="col-8 col-12-small">
-								<form method="post" action="#">
+								<form id="contactForm" onsubmit="handleContactSubmit(event)">
 									<div class="row gtr-uniform gtr-50">
-										<div class="col-6 col-12-xsmall"><input type="text" name="name" id="name" placeholder="Your Full Name" /></div>
-										<div class="col-6 col-12-xsmall"><input type="email" name="email" id="email" placeholder="Your Email Address" /></div>
-										<div class="col-12"><textarea name="message" id="message" placeholder="Your Message or Consultancy Inquiry" rows="4"></textarea></div>
+										<div class="col-6 col-12-xsmall"><input type="text" name="name" id="name" placeholder="Your Full Name" required /></div>
+										<div class="col-6 col-12-xsmall"><input type="email" name="email" id="email" placeholder="Your Email Address" required /></div>
+										<div class="col-12"><textarea name="message" id="message" placeholder="Your Message or Consultancy Inquiry" rows="4" required></textarea></div>
 									</div>
+									<ul class="actions" style="margin-top: 1.5em;">
+										<li><input type="submit" value="Send Message" class="primary" /></li>
+									</ul>
 								</form>
-								<ul class="actions" style="margin-top: 1.5em;">
-									<li><input type="submit" value="Send Message" class="primary" /></li>
-								</ul>
 							</div>
 							<div class="col-4 col-12-small">
 								<ul class="labeled-icons">
@@ -713,6 +878,27 @@
 					</section>
 
 			</div>
+
+		<!-- Modal Window for CV Access Permission -->
+		<div id="cvModal" class="modal-overlay">
+			<div class="modal-content">
+				<span class="close-modal" onclick="closeCvModal()">&times;</span>
+				<h3 style="margin-bottom: 10px;"><i class="fa-solid fa-shield-halved"></i> Request CV Permission</h3>
+				<p style="font-size: 0.85em; color: var(--text-muted);">Please provide your info to get full CV access via email/WhatsApp.</p>
+				<form id="cvRequestForm" onsubmit="submitCvRequest(event)">
+					<div class="row gtr-uniform gtr-50">
+						<div class="col-12"><input type="text" id="cvReqName" placeholder="Your Full Name / Recruiter Name" required /></div>
+						<div class="col-12"><input type="text" id="cvReqOrg" placeholder="Company / Organization Name" required /></div>
+						<div class="col-12"><input type="email" id="cvReqEmail" placeholder="Official Email Address" required /></div>
+						<div class="col-12"><input type="text" id="cvReqPhone" placeholder="Phone / WhatsApp Number" required /></div>
+						<div class="col-12"><textarea id="cvReqPurpose" placeholder="Purpose of Request (e.g. Job Offer, Audit Consultancy)" rows="3" required></textarea></div>
+						<div class="col-12" style="margin-top: 10px;">
+							<button type="submit" class="button primary fit icon solid fa-paper-plane">Submit Access Request</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
 
 		<!-- Footer -->
 			<footer id="footer">
@@ -745,17 +931,16 @@
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
 
-			<!-- Client Filter Script -->
+			<!-- Custom Scripts -->
 			<script>
-				function filterClients(category) {
-					// Update Active Button Style
+				// Client Filter Script
+				function filterClients(category, btnElement) {
 					const buttons = document.querySelectorAll('.filter-btn');
 					buttons.forEach(btn => btn.classList.remove('active'));
-					if(event && event.target) {
-						event.target.classList.add('active');
+					if(btnElement) {
+						btnElement.classList.add('active');
 					}
 
-					// Filter Client Cards
 					const items = document.querySelectorAll('.client-item');
 					items.forEach(item => {
 						if (category === 'all' || item.classList.contains(category)) {
@@ -764,6 +949,59 @@
 							item.style.display = 'none';
 						}
 					});
+				}
+
+				// CV Access Modal Functions
+				function openCvModal() {
+					document.getElementById('cvModal').style.display = 'flex';
+				}
+
+				function closeCvModal() {
+					document.getElementById('cvModal').style.display = 'none';
+				}
+
+				function submitCvRequest(e) {
+					e.preventDefault();
+					const name = document.getElementById('cvReqName').value;
+					const org = document.getElementById('cvReqOrg').value;
+					const email = document.getElementById('cvReqEmail').value;
+					const phone = document.getElementById('cvReqPhone').value;
+					const purpose = document.getElementById('cvReqPurpose').value;
+
+					const subject = encodeURIComponent("Request for Full CV Access - " + name + " (" + org + ")");
+					const body = encodeURIComponent("Hello Mithun Mutsuddi,\n\nI would like to request permission to access your full CV.\n\nDetails:\nName: " + name + "\nOrganization: " + org + "\nEmail: " + email + "\nPhone: " + phone + "\nPurpose: " + purpose);
+
+					window.location.href = "mailto:mithuncacc96@gmail.com?subject=" + subject + "&body=" + body;
+
+					alert("Thank you, " + name + "! Your request draft has been prepared. Please send the email to complete permission request.");
+					closeCvModal();
+				}
+
+				// Rating System Function
+				function submitRating(e) {
+					e.preventDefault();
+					const rating = document.querySelector('input[name="rating"]:checked').value;
+					const name = document.getElementById('reviewerName').value;
+					const comment = document.getElementById('reviewerComment').value;
+
+					document.getElementById('ratingForm').style.display = 'none';
+					document.getElementById('ratingSuccess').style.display = 'block';
+
+					// Optional: Notify via mailto / alert
+					console.log("Rating Submitted:", { rating, name, comment });
+				}
+
+				// Contact Form Handler
+				function handleContactSubmit(e) {
+					e.preventDefault();
+					const name = document.getElementById('name').value;
+					const email = document.getElementById('email').value;
+					const message = document.getElementById('message').value;
+
+					const subject = encodeURIComponent("Portfolio Contact: " + name);
+					const body = encodeURIComponent("Name: " + name + "\nEmail: " + email + "\n\nMessage:\n" + message);
+
+					window.location.href = "mailto:mithuncacc96@gmail.com?subject=" + subject + "&body=" + body;
 				}
 			</script>
 
