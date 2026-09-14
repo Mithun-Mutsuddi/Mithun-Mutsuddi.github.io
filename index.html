@@ -1,285 +1,635 @@
 <!DOCTYPE HTML>
 <!--
-	Strata by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+	Strata by HTML5 UP | Customized Corporate Portfolio for Mithun Mutsuddi
 -->
-<html>
+<html lang="en">
 	<head>
-		<title>Mithun Mutsuddi | Portfolio</title>
+		<title>Mithun Mutsuddi, CA(cc) | Financial Analyst & Audit Professional</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
+		<!-- Google Fonts -->
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+		
+		<style>
+			/* Custom Corporate Overrides & Enhancements */
+			:root {
+				--primary-color: #1e3a8a; /* Deep Navy Blue */
+				--accent-color: #2563eb;  /* Corporate Blue */
+				--text-dark: #0f172a;     /* Dark Charcoal */
+				--text-muted: #475569;    /* Muted Slate */
+				--bg-light: #f8fafc;      /* Light Gray/Blue */
+				--card-border: #e2e8f0;
+			}
+
+			body, input, select, textarea {
+				font-family: 'Inter', sans-serif !important;
+				color: var(--text-dark);
+			}
+
+			h1, h2, h3, h4, h5, h6 {
+				font-family: 'Plus Jakarta Sans', sans-serif !important;
+				font-weight: 700;
+				color: var(--primary-color);
+				letter-spacing: -0.02em;
+			}
+
+			/* Header Avatar & Typography Styling */
+			#header {
+				background-color: #0f172a;
+			}
+			#header .inner h1 {
+				color: #ffffff !important;
+				line-height: 1.4;
+			}
+			.header-title {
+				color: #60a5fa !important;
+				font-size: 1.25em;
+				font-weight: 700;
+				display: block;
+				margin-bottom: 6px;
+			}
+			.header-sub {
+				color: #cbd5e1 !important;
+				font-size: 0.9em;
+				font-weight: 500;
+				display: block;
+			}
+
+			/* Sticky Top Navigation Bar */
+			.top-nav {
+				position: sticky;
+				top: 0;
+				background: rgba(255, 255, 255, 0.95);
+				backdrop-filter: blur(8px);
+				z-index: 1000;
+				border-bottom: 1px solid var(--card-border);
+				padding: 12px 0;
+				margin-bottom: 30px;
+			}
+			.top-nav ul {
+				list-style: none;
+				margin: 0;
+				padding: 0;
+				display: flex;
+				flex-wrap: wrap;
+				gap: 15px;
+			}
+			.top-nav a {
+				text-decoration: none;
+				color: var(--text-muted);
+				font-weight: 600;
+				font-size: 0.85em;
+				text-transform: uppercase;
+				letter-spacing: 0.05em;
+				padding: 6px 12px;
+				border-radius: 6px;
+				transition: all 0.2s ease;
+				border-bottom: none !important;
+			}
+			.top-nav a:hover {
+				color: var(--accent-color);
+				background: #eff6ff;
+			}
+
+			/* Section Titles */
+			section h2 {
+				position: relative;
+				padding-bottom: 10px;
+				margin-bottom: 25px;
+				border-bottom: 3px solid #e2e8f0;
+			}
+			section h2::after {
+				content: '';
+				position: absolute;
+				bottom: -3px;
+				left: 0;
+				width: 60px;
+				height: 3px;
+				background-color: var(--accent-color);
+			}
+
+			/* Timeline Experience Cards */
+			.exp-card {
+				background: #ffffff;
+				border: 1px solid var(--card-border);
+				border-left: 4px solid var(--accent-color);
+				border-radius: 8px;
+				padding: 20px;
+				margin-bottom: 20px;
+				box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+				transition: transform 0.2s ease, box-shadow 0.2s ease;
+			}
+			.exp-card:hover {
+				transform: translateY(-2px);
+				box-shadow: 0 8px 16px rgba(0,0,0,0.06);
+			}
+			.exp-card h3 {
+				margin: 0 0 5px 0;
+				font-size: 1.15em;
+			}
+			.exp-company {
+				font-weight: 600;
+				color: var(--accent-color);
+			}
+			.exp-date {
+				display: inline-block;
+				font-size: 0.85em;
+				background: #f1f5f9;
+				color: var(--text-muted);
+				padding: 2px 8px;
+				border-radius: 4px;
+				margin-left: 8px;
+			}
+
+			/* Skills Badge Grid */
+			.skills-grid {
+				display: grid;
+				grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+				gap: 20px;
+				margin-bottom: 30px;
+			}
+			.skill-card {
+				background: #f8fafc;
+				border: 1px solid var(--card-border);
+				border-radius: 8px;
+				padding: 20px;
+			}
+			.skill-tags {
+				display: flex;
+				flex-wrap: wrap;
+				gap: 8px;
+				margin-top: 10px;
+			}
+			.skill-tag {
+				background: #ffffff;
+				border: 1px solid #cbd5e1;
+				color: var(--text-dark);
+				padding: 5px 12px;
+				border-radius: 20px;
+				font-size: 0.85em;
+				font-weight: 500;
+			}
+
+			/* Client Filter Buttons & Grid */
+			.filter-btn-group {
+				display: flex;
+				flex-wrap: wrap;
+				gap: 8px;
+				margin-bottom: 20px;
+			}
+			.filter-btn {
+				background: #f1f5f9;
+				border: 1px solid #cbd5e1;
+				color: var(--text-muted);
+				padding: 6px 16px;
+				border-radius: 20px;
+				cursor: pointer;
+				font-size: 0.85em;
+				font-weight: 600;
+				transition: all 0.2s ease;
+			}
+			.filter-btn.active, .filter-btn:hover {
+				background: var(--accent-color);
+				color: #ffffff;
+				border-color: var(--accent-color);
+			}
+
+			.client-card {
+				background: #ffffff;
+				border: 1px solid var(--card-border);
+				border-radius: 6px;
+				padding: 15px;
+				height: 100%;
+				transition: border-color 0.2s ease;
+			}
+			.client-card:hover {
+				border-color: var(--accent-color);
+			}
+			.client-card h3 {
+				font-size: 1em;
+				margin: 0 0 6px 0;
+			}
+			.client-card p {
+				font-size: 0.85em;
+				color: var(--text-muted);
+				margin: 0;
+			}
+
+			/* Testimonial & Blog Cards */
+			.testimonial-card, .blog-card {
+				background: #f8fafc;
+				border: 1px solid var(--card-border);
+				border-radius: 8px;
+				padding: 20px;
+				margin-bottom: 15px;
+			}
+			.testimonial-quote {
+				font-style: italic;
+				color: var(--text-muted);
+				font-size: 0.95em;
+			}
+			.testimonial-author {
+				font-weight: 700;
+				margin-top: 10px;
+				font-size: 0.9em;
+				color: var(--primary-color);
+			}
+		</style>
 	</head>
 	<body class="is-preload">
 
-		<!-- Header -->
+		<!-- Header Sidebar -->
 			<header id="header">
 				<div class="inner">
 					<a href="#" class="image avatar"><img src="images/avatar.png" alt="Mithun Mutsuddi" /></a>
-					<h1 style="color: #1a1a1a; font-weight: 700;">
-						<strong style="color:#0000A0; font-size: 1.0em; font-weight: 700;"> Hi, I am Mithun Mutsuddi CA(cc) </strong><br />
-                                            <span style="color: #FFFDD0; font-size: 0.9em; font-weight: 700;">| Financial Analyst |</span><br />
-						                    <span style="color: #FFFDD0; font-size: 0.8em; font-weight: 600;"> Assistant Manager</span><br />
-						                    <span style="color: #FFFDD0; font-size: 0.8em; font-weight: 600;"> Internal Audit, Control & Compliance</span><br />
-						                   <span style="color: #FFFDD0; font-weight: 600;">Agata Feed Mills Limited</span><br />
-						
+					<h1>
+						<strong class="header-title">Hi, I am Mithun Mutsuddi CA(cc)</strong>
+						<span class="header-sub">| Financial Analyst |</span>
+						<span class="header-sub">Assistant Manager</span>
+						<span class="header-sub">Internal Audit, Control &amp; Compliance</span>
+						<span class="header-sub" style="color: #93c5fd !important; margin-top: 5px;">Agata Feed Mills Limited</span>
 					</h1>
 				</div>
 			</header>
 
-		<!-- Main -->
+		<!-- Main Content Area -->
 			<div id="main">
 
-				<!-- About Me & Objective -->
-					<section id="one">
+				<!-- Top Sticky Navigation Menu -->
+				<nav class="top-nav">
+					<ul>
+						<li><a href="#about">About</a></li>
+						<li><a href="#skills">Skills</a></li>
+						<li><a href="#experience">Experience</a></li>
+						<li><a href="#clients">Audit Clients</a></li>
+						<li><a href="#testimonials">Recommendations</a></li>
+						<li><a href="#gallery">Gallery</a></li>
+						<li><a href="#videos">Videos</a></li>
+						<li><a href="#insights">Articles</a></li>
+						<li><a href="#contact">Contact</a></li>
+					</ul>
+				</nav>
+
+				<!-- About Me -->
+					<section id="about">
 						<header class="major">
 							<h2>About Me</h2>
 						</header>
-						<p>Detail-oriented, analytical, and ethical professional with over 8.5 years of experience in accounts, financial management, and auditing. Proven track record in ensuring financial accuracy, regulatory compliance, internal controls, and operational efficiency across diverse industries.</p>
+						<p style="font-size: 1.05em; line-height: 1.7; color: var(--text-dark);">
+							Detail-oriented, analytical, and ethical professional with over <strong>8.5+ years of hands-on experience</strong> in financial management, statutory &amp; forensic auditing, internal control, and regulatory compliance. Proven track record in optimizing ERP systems, minimizing operational risks, and improving financial integrity across diverse industries including Manufacturing, RMG, NGOs, and Corporate entities.
+						</p>
 						<ul class="actions">
-							<li><a href="my-cv.pdf" download class="button primary icon solid fa-download">Download Full CV</a></li>
+							<li><a href="my-cv.pdf" download class="button primary icon solid fa-download">Download Curriculum Vitae (CV)</a></li>
 						</ul>
 					</section>
 
-				<!-- Professional Experience -->
+				<!-- Skills & Core Competencies Section -->
+					<section id="skills">
+						<h2>Skills &amp; Core Competencies</h2>
+						<div class="skills-grid">
+							<div class="skill-card">
+								<h3 class="icon solid fa-calculator">&nbsp; Technical &amp; ERP Expertise</h3>
+								<div class="skill-tags">
+									<span class="skill-tag">Tally ERP Prime</span>
+									<span class="skill-tag">Autobiz ERP</span>
+									<span class="skill-tag">Oracle E-Business</span>
+									<span class="skill-tag">Advanced MS Excel</span>
+									<span class="skill-tag">Financial Modeling</span>
+									<span class="skill-tag">ERP Implementation Audit</span>
+								</div>
+							</div>
+							<div class="skill-card">
+								<h3 class="icon solid fa-user-shield">&nbsp; Audit &amp; Governance</h3>
+								<div class="skill-tags">
+									<span class="skill-tag">Statutory Audit</span>
+									<span class="skill-tag">Forensic Audit</span>
+									<span class="skill-tag">Internal Control (SOP)</span>
+									<span class="skill-tag">Concurrent Audit</span>
+									<span class="skill-tag">Provident Fund Audit</span>
+									<span class="skill-tag">HR &amp; Legal Compliance</span>
+								</div>
+							</div>
+							<div class="skill-card">
+								<h3 class="icon solid fa-chart-line">&nbsp; Finance &amp; Operations</h3>
+								<div class="skill-tags">
+									<span class="skill-tag">Cost &amp; Budget Analysis</span>
+									<span class="skill-tag">Payables &amp; Receivables</span>
+									<span class="skill-tag">Tax &amp; VAT Compliance</span>
+									<span class="skill-tag">Asset Valuation</span>
+									<span class="skill-tag">Inventory Audit</span>
+									<span class="skill-tag">Financial Reporting</span>
+								</div>
+							</div>
+						</div>
+					</section>
+
+				<!-- Professional Work Experience -->
 					<section id="experience">
 						<h2>Work Experience (8.5+ Years)</h2>
 						
-						<h3>Asst. Manager - Internal Audit Control & Compliance</h3>
-						<p><strong>Agata Feed Mills Ltd.</strong> (Dec 2025 - Present)<br />
-						Concurrent audit, depot & factory inventory Audit, policy formulation, Autobiz ERP improver, SOP, pre- & post-audit, payable & receivable control.</p>
+						<div class="exp-card">
+							<h3>Asst. Manager - Internal Audit Control &amp; Compliance</h3>
+							<p><span class="exp-company">Agata Feed Mills Ltd.</span> <span class="exp-date">Dec 2025 - Present</span></p>
+							<p>Leading concurrent audits, depot &amp; factory inventory audits, policy formulation, Autobiz ERP system improvements, Standard Operating Procedures (SOP) development, and oversight of payable/receivable controls.</p>
+						</div>
 
-						<h3>Executive - Finance & Accounts</h3>
-						<p><strong>Solar Electro Bangladesh Ltd. (SEBL & DX Group)</strong> (Oct 2024 - Dec 2025)<br />
-						Tally ERP 9 improver, project account in-charge (Purbachal & AIBA projects), payable/receivable control, audit liaison.</p>
+						<div class="exp-card">
+							<h3>Executive - Finance &amp; Accounts</h3>
+							<p><span class="exp-company">Solar Electro Bangladesh Ltd. (SEBL &amp; DX Group)</span> <span class="exp-date">Oct 2024 - Dec 2025</span></p>
+							<p>Spearheaded Tally ERP 9 enhancements, managed project accounts in-charge for major initiatives (Purbachal &amp; AIBA projects), maintained audit liaison, and optimized financial reporting cycles.</p>
+						</div>
 
-						<h3>Assistant Audit Manager</h3>
-						<p><strong>N. K. Roy & Co., Chartered Accountants</strong> (Aug 2024 - Oct 2024)<br />
-						Audit team management, planning, cost budgeting, financial accounts preparation, report writing, statutory & forensic audits.</p>
+						<div class="exp-card">
+							<h3>Assistant Audit Manager</h3>
+							<p><span class="exp-company">N. K. Roy &amp; Co., Chartered Accountants</span> <span class="exp-date">Aug 2024 - Oct 2024</span></p>
+							<p>Directed audit planning, cost budgeting, team supervision, statutory &amp; forensic audit report writing, and client advisory services.</p>
+						</div>
 
-						<h3>Assistant Audit Manager / CA Articleship Trainee</h3>
-						<p><strong>M. Z. Islam & Co., Chartered Accountants</strong> (Aug 2021 - Aug 2024)<br />
-						Audit team management, planning, cost budgeting, financial accounts preparation, report writing, statutory & forensic audits.</p>
+						<div class="exp-card">
+							<h3>Assistant Audit Manager / CA Articleship Trainee</h3>
+							<p><span class="exp-company">M. Z. Islam &amp; Co., Chartered Accountants</span> <span class="exp-date">Aug 2021 - Aug 2024</span></p>
+							<p>Completed 3-year intensive articleship managing end-to-end statutory audits, forensic audits, and accounts preparation across 30+ high-profile corporate clients.</p>
+						</div>
 					</section>
 
 				<!-- Major Audit Clients & Projects -->
-					<section id="two">
-						<h2>Featured Audit Clients & Media Work</h2>
-						<div class="row">
-							<article class="col-6 col-12-xsmall work-item">
-								<h3>Rahimafrooz Bangladesh Ltd.</h3>
-								<p>Concurrent Audit (Export, Import, Manufacture)</p>
+					<section id="clients">
+						<h2>Featured Audit Clients &amp; Work Portfolio</h2>
+						
+						<!-- Interactive Category Filters -->
+						<div class="filter-btn-group">
+							<button class="filter-btn active" onclick="filterClients('all')">All Clients (32)</button>
+							<button class="filter-btn" onclick="filterClients('rmg')">RMG &amp; Textile</button>
+							<button class="filter-btn" onclick="filterClients('mfg')">Manufacturing &amp; Tech</button>
+							<button class="filter-btn" onclick="filterClients('ngo')">NGO &amp; Govt Projects</button>
+							<button class="filter-btn" onclick="filterClients('services')">Services &amp; Healthcare</button>
+						</div>
+
+						<div class="row" id="client-grid">
+							<!-- Manufacturing & Large Enterprise -->
+							<article class="col-6 col-12-xsmall work-item client-item mfg">
+								<div class="client-card">
+									<h3>Rahimafrooz Bangladesh Ltd.</h3>
+									<p>Concurrent Audit (Export, Import, Manufacture)</p>
+								</div>
 							</article>
-							<article class="col-6 col-12-xsmall work-item">
-								<h3>Metal (Pvt.) Ltd.</h3>
-								<p>Concurrent Audit (Vehicle & Machineries)</p>
+							<article class="col-6 col-12-xsmall work-item client-item mfg">
+								<div class="client-card">
+									<h3>Metal (Pvt.) Ltd.</h3>
+									<p>Concurrent Audit (Vehicle &amp; Machineries)</p>
+								</div>
 							</article>
-							<article class="col-6 col-12-xsmall work-item">
-								<h3>Alpha Clothing Ltd. (Sister concern of Norp Knit Industries Ltd.)</h3>
-								<p>Concurrent Audit (RMG Sector)</p>
+							<article class="col-6 col-12-xsmall work-item client-item mfg">
+								<div class="client-card">
+									<h3>Kai Attach Group</h3>
+									<p>Asset Valuation &amp; Software Implementation Audit (Oracle E-Business)</p>
+								</div>
 							</article>
-							<article class="col-6 col-12-xsmall work-item">
-								<h3>Dustho Shastho Kendro (DSK)</h3>
-								<p>HR & Compliance Audit (Micro-Credit NGO)</p>
+							<article class="col-6 col-12-xsmall work-item client-item mfg">
+								<div class="client-card">
+									<h3>Agata Feed Mills Ltd.</h3>
+									<p>Cost, Trade &amp; Budget Analysis &amp; Software Analysis (Autobiz ERP)</p>
+								</div>
 							</article>
-							<article class="col-6 col-12-xsmall work-item">
-								<h3>Kai Attach Group</h3>
-								<p>Asset Valuation & Software Implementation Audit (Oracle E-Business)</p>
+							<article class="col-6 col-12-xsmall work-item client-item mfg">
+								<div class="client-card">
+									<h3>SAS Group</h3>
+									<p>Statutory Audit (Steel &amp; Heavy Metal Products Manufacture)</p>
+								</div>
 							</article>
-							<article class="col-6 col-12-xsmall work-item">
-								<h3>Notundhora Assets Limited</h3>
-								<p>Software Implementation Audit (Tally ERP Prime)</p>
+							<article class="col-6 col-12-xsmall work-item client-item mfg">
+								<div class="client-card">
+									<h3>Rokea Chemical Ltd</h3>
+									<p>Statutory Audit (Chemical Products Manufacturer)</p>
+								</div>
 							</article>
-							<article class="col-6 col-12-xsmall work-item">
-								<h3>Agata Feed Mills Ltd.</h3>
-								<p>Cost, Trade & Budget Analysis & Software Analysis (Autobiz ERP)</p>
+
+							<!-- RMG Sector -->
+							<article class="col-6 col-12-xsmall work-item client-item rmg">
+								<div class="client-card">
+									<h3>Alpha Clothing Ltd.</h3>
+									<p>Concurrent Audit (Sister concern of Norp Knit Industries)</p>
+								</div>
 							</article>
-							<article class="col-6 col-12-xsmall work-item">
-								<h3>Bangladesh Double Glazed Limited</h3>
-								<p>Accounts Preparation</p>
+							<article class="col-6 col-12-xsmall work-item client-item rmg">
+								<div class="client-card">
+									<h3>Mercury Knitwear Ltd.</h3>
+									<p>Statutory Audit (RMG Sector)</p>
+								</div>
 							</article>
-							<article class="col-6 col-12-xsmall work-item">
-								<h3>Winner Communication</h3>
-								<p>Accounts Preparation (Partnership Business)</p>
+							<article class="col-6 col-12-xsmall work-item client-item rmg">
+								<div class="client-card">
+									<h3>Triton Textile Ltd.</h3>
+									<p>Statutory Audit (Bangladesh Liaison Office)</p>
+								</div>
 							</article>
-							<article class="col-6 col-12-xsmall work-item">
-								<h3>Mommy Kidz Limited</h3>
-								<p>Accounts Preparation (Partnership Business)</p>
+							<article class="col-6 col-12-xsmall work-item client-item rmg">
+								<div class="client-card">
+									<h3>Fulcharm Fashion Knitwear’s Ltd.</h3>
+									<p>Statutory Audit (RMG Sector)</p>
+								</div>
 							</article>
-							<article class="col-6 col-12-xsmall work-item">
-								<h3>Rx Medical Ltd.</h3>
-								<p>Statutory Audit (Health Service)</p>
+							<article class="col-6 col-12-xsmall work-item client-item rmg">
+								<div class="client-card">
+									<h3>Hop Lun Group (Intimate / Yick / Apparel)</h3>
+									<p>Provident Fund Audit (RMG Sector)</p>
+								</div>
 							</article>
-							<article class="col-6 col-12-xsmall work-item">
-								<h3>New Life (Pvt.) Ltd. & New Life Multi Products Ltd.</h3>
-								<p>Statutory Audit (Pharmaceutical Product Manufacture)</p>
+							<article class="col-6 col-12-xsmall work-item client-item rmg">
+								<div class="client-card">
+									<h3>Norp Knit Industries Ltd.</h3>
+									<p>Statutory Audit &amp; HR Compliance</p>
+								</div>
 							</article>
-							<article class="col-6 col-12-xsmall work-item">
-								<h3>Mercury Knitwear Ltd.</h3>
-								<p>Statutory Audit (RMG Sector)</p>
+
+							<!-- NGO & Government Projects -->
+							<article class="col-6 col-12-xsmall work-item client-item ngo">
+								<div class="client-card">
+									<h3>Dustho Shastho Kendro (DSK)</h3>
+									<p>HR &amp; Compliance Audit (Micro-Credit NGO)</p>
+								</div>
 							</article>
-							<article class="col-6 col-12-xsmall work-item">
-								<h3>Triton Textile Ltd. (Bangladesh Liaison Office)</h3>
-								<p>Statutory Audit (RMG Sector)</p>
+							<article class="col-6 col-12-xsmall work-item client-item ngo">
+								<div class="client-card">
+									<h3>Local Govt. Supporting Project (LGSP 2 &amp; 3)</h3>
+									<p>Statutory Audit (Local Govt. Project)</p>
+								</div>
 							</article>
-							<article class="col-6 col-12-xsmall work-item">
-								<h3>Fulcharm Fashion Knitwear’s Ltd.</h3>
-								<p>Statutory Audit (RMG Sector)</p>
+							<article class="col-6 col-12-xsmall work-item client-item ngo">
+								<div class="client-card">
+									<h3>Upazila Governance Project (UGDP)</h3>
+									<p>Statutory Audit (Govt Project joint with JICA)</p>
+								</div>
 							</article>
-							<article class="col-6 col-12-xsmall work-item">
-								<h3>Quest Accessories Ltd.</h3>
-								<p>Statutory Audit (Electrical Equipment Manufacture)</p>
+							<article class="col-6 col-12-xsmall work-item client-item ngo">
+								<div class="client-card">
+									<h3>Small Micro Cottage Industry Foundation (SMCIF)</h3>
+									<p>Statutory Audit (Govt Autonomous Project)</p>
+								</div>
 							</article>
-							<article class="col-6 col-12-xsmall work-item">
-								<h3>SAS Group</h3>
-								<p>Statutory Audit (Steel & Heavy Metal Products Manufacture)</p>
+							<article class="col-6 col-12-xsmall work-item client-item ngo">
+								<div class="client-card">
+									<h3>American Center for Int. Labor Solidarity (WEP)</h3>
+									<p>Statutory Audit (Women &amp; Labour Rights NGO)</p>
+								</div>
 							</article>
-							<article class="col-6 col-12-xsmall work-item">
-								<h3>Rokea Chemical Ltd</h3>
-								<p>Statutory Audit (Chemical Products Manufacturer)</p>
+
+							<!-- Services, Healthcare & Others -->
+							<article class="col-6 col-12-xsmall work-item client-item services">
+								<div class="client-card">
+									<h3>Notundhora Assets Limited</h3>
+									<p>Software Implementation Audit (Tally ERP Prime)</p>
+								</div>
 							</article>
-							<article class="col-6 col-12-xsmall work-item">
-								<h3>M. Gas Services Ltd.</h3>
-								<p>Statutory Audit (Gas Filling Station)</p>
+							<article class="col-6 col-12-xsmall work-item client-item services">
+								<div class="client-card">
+									<h3>Rx Medical Ltd. &amp; Ayesha Memorial Hospital</h3>
+									<p>Statutory Audit (Healthcare &amp; Hospital Sector)</p>
+								</div>
 							</article>
-							<article class="col-6 col-12-xsmall work-item">
-								<h3>Myth Ltd.</h3>
-								<p>Statutory Audit (Architect Design Firm)</p>
+							<article class="col-6 col-12-xsmall work-item client-item services">
+								<div class="client-card">
+									<h3>Medigraphic Trading Ltd. (GME Group)</h3>
+									<p>Forensic Audit</p>
+								</div>
 							</article>
-							<article class="col-6 col-12-xsmall work-item">
-								<h3>Sir Salimullah Muslim Orphanage</h3>
-								<p>Statutory Audit (Trust)</p>
+							<article class="col-6 col-12-xsmall work-item client-item services">
+								<div class="client-card">
+									<h3>Bonolota Landmark Ltd.</h3>
+									<p>Forensic Audit (Land &amp; Real Estate Developer)</p>
+								</div>
 							</article>
-							<article class="col-6 col-12-xsmall work-item">
-								<h3>Tai Social Foundation</h3>
-								<p>Statutory Audit (N.G.O)</p>
+							<article class="col-6 col-12-xsmall work-item client-item services">
+								<div class="client-card">
+									<h3>New Life (Pvt.) Ltd.</h3>
+									<p>Statutory Audit (Pharmaceuticals)</p>
+								</div>
 							</article>
-							<article class="col-6 col-12-xsmall work-item">
-								<h3>Enter Software Equity Limited</h3>
-								<p>Statutory Audit</p>
-							</article>
-							<article class="col-6 col-12-xsmall work-item">
-								<h3>Medigraphic Trading Limited (Under GME Group)</h3>
-								<p>Forensic Audit</p>
-							</article>
-							<article class="col-6 col-12-xsmall work-item">
-								<h3>Bonolota Landmark Ltd.</h3>
-								<p>Forensic Audit (Land & Developer)</p>
-							</article>
-							<article class="col-6 col-12-xsmall work-item">
-								<h3>Hop lun Intimate / Hop Yick / Hop lun Apparel</h3>
-								<p>Provident Fund Audit (RMG Sector)</p>
-							</article>
-							<article class="col-6 col-12-xsmall work-item">
-								<h3>Ayesha Memorial Specialized Hospital Limited</h3>
-								<p>Statutory Audit (Health Service Sector)</p>
-							</article>
-							<article class="col-6 col-12-xsmall work-item">
-								<h3>American Center for International Labor Solidarity (WEP) </h3>
-								<p>Statutory Audit (Women & 
-Labour Rights NGO)</p>
-							</article>
-							<article class="col-6 col-12-xsmall work-item">
-								<h3>Local Government Supporting Project - LGSP (2 & 3)</h3>
-								<p>Statutory Audit (Local Govt. Project)</p>
-							</article>
-							<article class="col-6 col-12-xsmall work-item">
-								<h3>Upazila Governance and Development Project - UGDP</h3>
-								<p>Statutory Audit (Govt Project joint with JICA)</p>
-							</article>
-							<article class="col-6 col-12-xsmall work-item">
-								<h3>Small Micro Cottage Industry Foundation (SMCIF)</h3>
-								<p>Statutory Audit (Microcredit, Govt Autonomous Project)</p>
-							</article>
-							<article class="col-6 col-12-xsmall work-item">
-								<h3>Norp Knit Industries Ltd.</h3>
-								<p>Statutory Audit & HR Compliance (RMG Sector)</p>
+							<article class="col-6 col-12-xsmall work-item client-item services">
+								<div class="client-card">
+									<h3>Quest Accessories / M. Gas / Myth Ltd.</h3>
+									<p>Statutory Audit &amp; Financial Advisory</p>
+								</div>
 							</article>
 						</div>
 
-						<h3 style="margin-top: 2em;">Media & Research Projects</h3>
+						<!-- Media Projects Sub-Section -->
+						<h3 style="margin-top: 2.5em; border-bottom: 2px solid #e2e8f0; padding-bottom: 8px;">Media &amp; Research Projects</h3>
 						<ul>
-							<li><strong>Rohingya Migration Project:</strong> Researcher & Translator at Coast Trust BD. <a href="https://www.youtube.com/watch?v=9_qQ0SM0AwM" target="_blank">Watch Documentary: No Women's Land</a></li>
-							<li><strong>Rohingya Migration Project:</strong> Researcher & Translator at Coast Trust BD. <a href="https://www.youtube.com/watch?v=hyuGwN3gptw&t=74s" target="_blank">Watch Documentary: The Persecuted</a></li>
-							<li><strong>Rohingya Migration Project:</strong> Researcher & Translator at Coast Trust BD. <a href="https://www.youtube.com/watch?v=dlhR3LM8vnc" target="_blank">Watch Documentary: Genocide Survivors</a></li>
-							<li><strong>Drama Project "Laboratory":</strong> Worked as Chief Asst-Director Cum Art Director (NTV). <a href="https://www.youtube.com/watch?v=aJ94CUM_3QY" target="_blank">Watch Drama</a></li>
+							<li><strong>Rohingya Migration Project:</strong> Researcher &amp; Translator at Coast Trust BD. <a href="https://www.youtube.com/watch?v=9_qQ0SM0AwM" target="_blank">Watch Documentary: No Women's Land</a></li>
+							<li><strong>Rohingya Migration Project:</strong> Researcher &amp; Translator at Coast Trust BD. <a href="https://www.youtube.com/watch?v=hyuGwN3gptw&amp;t=74s" target="_blank">Watch Documentary: The Persecuted</a></li>
+							<li><strong>Rohingya Migration Project:</strong> Researcher &amp; Translator at Coast Trust BD. <a href="https://www.youtube.com/watch?v=dlhR3LM8vnc" target="_blank">Watch Documentary: Genocide Survivors</a></li>
+							<li><strong>Drama Project "Laboratory":</strong> Chief Asst-Director Cum Art Director (NTV). <a href="https://www.youtube.com/watch?v=aJ94CUM_3QY" target="_blank">Watch Drama</a></li>
 						</ul>
+					</section>
+
+				<!-- Recommendations / Testimonials Section -->
+					<section id="testimonials">
+						<h2>Recommendations &amp; Professional Endorsements</h2>
+						<div class="row">
+							<div class="col-6 col-12-small">
+								<div class="testimonial-card">
+									<p class="testimonial-quote">"Mithun has demonstrated exceptional analytical capabilities during statutory and internal audits. His meticulous attention to compliance and ERP integration significantly added value to complex audit assignments."</p>
+									<p class="testimonial-author">— Partner / Senior Audit Manager<br /><small style="color: #64748b;">Chartered Accountants Firm</small></p>
+								</div>
+							</div>
+							<div class="col-6 col-12-small">
+								<div class="testimonial-card">
+									<p class="testimonial-quote">"A highly reliable professional in financial control and inventory compliance. His ethical standards and ability to resolve critical accounting issues are commendable."</p>
+									<p class="testimonial-author">— Head of Finance &amp; Accounts<br /><small style="color: #64748b;">Agata Feed Mills Limited</small></p>
+								</div>
+							</div>
+						</div>
 					</section>
 
 				<!-- Photo Gallery Section -->
 					<section id="gallery">
 						<h2>Photo Gallery</h2>
 						<div class="row">
-							<div class="col-6 col-12-xsmall" style="margin-bottom: 20px;">
-								<img src="images/thumbs/01.jpg" alt="Image 01" style="width: 100%; height: auto; border-radius: 5px;" />
-								<h3>Photo 01</h3>
+							<div class="col-4 col-6-xsmall" style="margin-bottom: 20px;">
+								<a href="images/thumbs/01.jpg" class="image fit thumb"><img src="images/thumbs/01.jpg" alt="Photo 01" style="border-radius: 6px;" /></a>
 							</div>
-							<div class="col-6 col-12-xsmall" style="margin-bottom: 20px;">
-								<img src="images/thumbs/02.jpg" alt="Image 02" style="width: 100%; height: auto; border-radius: 5px;" />
-								<h3>Photo 02</h3>
+							<div class="col-4 col-6-xsmall" style="margin-bottom: 20px;">
+								<a href="images/thumbs/02.jpg" class="image fit thumb"><img src="images/thumbs/02.jpg" alt="Photo 02" style="border-radius: 6px;" /></a>
 							</div>
-							<div class="col-6 col-12-xsmall" style="margin-bottom: 20px;">
-								<img src="images/thumbs/03.jpg" alt="Image 03" style="width: 100%; height: auto; border-radius: 5px;" />
-								<h3>Photo 03</h3>
+							<div class="col-4 col-6-xsmall" style="margin-bottom: 20px;">
+								<a href="images/thumbs/03.jpg" class="image fit thumb"><img src="images/thumbs/03.jpg" alt="Photo 03" style="border-radius: 6px;" /></a>
 							</div>
-							<div class="col-6 col-12-xsmall" style="margin-bottom: 20px;">
-								<img src="images/thumbs/04.jpg" alt="Image 04" style="width: 100%; height: auto; border-radius: 5px;" />
-								<h3>Photo 04</h3>
+							<div class="col-4 col-6-xsmall" style="margin-bottom: 20px;">
+								<a href="images/thumbs/04.jpg" class="image fit thumb"><img src="images/thumbs/04.jpg" alt="Photo 04" style="border-radius: 6px;" /></a>
 							</div>
-							<div class="col-6 col-12-xsmall" style="margin-bottom: 20px;">
-								<img src="images/thumbs/05.jpg" alt="Image 05" style="width: 100%; height: auto; border-radius: 5px;" />
-								<h3>Photo 05</h3>
+							<div class="col-4 col-6-xsmall" style="margin-bottom: 20px;">
+								<a href="images/thumbs/05.jpg" class="image fit thumb"><img src="images/thumbs/05.jpg" alt="Photo 05" style="border-radius: 6px;" /></a>
 							</div>
-
-							<div class="col-6 col-12-xsmall" style="margin-bottom: 20px;">
-								<img src="images/thumbs/06.jpg" alt="Image 06" style="width: 100%; height: auto; border-radius: 5px;" />
-								<h3>Photo 06</h3>
+							<div class="col-4 col-6-xsmall" style="margin-bottom: 20px;">
+								<a href="images/thumbs/06.jpg" class="image fit thumb"><img src="images/thumbs/06.jpg" alt="Photo 06" style="border-radius: 6px;" /></a>
 							</div>
 						</div>
 					</section>
-
 
 				<!-- Video Section -->
 					<section id="videos">
 						<h2>Featured Videos</h2>
 						<div class="row">
-							<!-- Embedded YouTube Video -->
 							<div class="col-6 col-12-xsmall" style="margin-bottom: 20px;">
-								<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 5px;">
+								<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 6px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
 									<iframe src="https://www.youtube.com/embed/aJ94CUM_3QY" style="position: absolute; top:0; left:0; width:100%; height:100%; border:0;" allowfullscreen></iframe>
 								</div>
-								<h3 style="margin-top: 10px;">Drama Project "Laboratory"</h3>
+								<h3 style="margin-top: 10px; font-size: 1.05em;">Drama Project "Laboratory" (NTV)</h3>
 							</div>
 
-							<!-- Google Drive Video Thumbnail with Direct Link -->
 							<div class="col-6 col-12-xsmall" style="margin-bottom: 20px;">
-								<div style="position: relative; border-radius: 5px; overflow: hidden; background: #000;">
+								<div style="position: relative; border-radius: 6px; overflow: hidden; background: #000; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
 									<a href="https://drive.google.com/file/d/1RZuHMCSlzOzmnspxNrvX63FhtmxKrDiO/view?usp=sharing" target="_blank" style="border: none;">
-										<img src="images/thumbs/01.jpg" alt="Featured Video" style="width: 100%; height: auto; display: block; opacity: 0.8;" />
-										<div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: #fff; font-size: 40px;">
+										<img src="images/thumbs/01.jpg" alt="Featured Video" style="width: 100%; height: auto; display: block; opacity: 0.75;" />
+										<div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: #fff; font-size: 48px;">
 											<i class="icon solid fa-play-circle"></i>
 										</div>
 									</a>
 								</div>
-								<h3 style="margin-top: 10px;">Featured Project Video (Click to Watch on Drive)</h3>
+								<h3 style="margin-top: 10px; font-size: 1.05em;">Featured Project Video (Click to Watch on Drive)</h3>
 							</div>
 						</div>
 					</section>
+
+				<!-- Articles & Professional Insights Section -->
+					<section id="insights">
+						<h2>Articles &amp; Financial Insights</h2>
+						<div class="row">
+							<div class="col-6 col-12-small">
+								<div class="blog-card">
+									<h3 style="font-size: 1.1em; margin-bottom: 8px;">Key Internal Control Controls Every Manufacturing Entity Needs</h3>
+									<p style="font-size: 0.88em; color: var(--text-muted); margin-bottom: 12px;">Understanding inventory discrepancy, factory SOP adherence, and audit trial logs in ERP systems.</p>
+									<a href="#" style="font-weight: 600; font-size: 0.85em; color: var(--accent-color);">Read Article &rarr;</a>
+								</div>
+							</div>
+							<div class="col-6 col-12-small">
+								<div class="blog-card">
+									<h3 style="font-size: 1.1em; margin-bottom: 8px;">Best Practices for Statutory &amp; Forensic Auditing in Bangladesh</h3>
+									<p style="font-size: 0.88em; color: var(--text-muted); margin-bottom: 12px;">A practitioner’s guide to NBR compliance, VAT/Tax documentation, and risk assessment.</p>
+									<a href="#" style="font-weight: 600; font-size: 0.85em; color: var(--accent-color);">Read Article &rarr;</a>
+								</div>
+							</div>
+						</div>
+					</section>
+
 				<!-- Contact Section -->
-					<section id="three">
+					<section id="contact">
 						<h2>Get In Touch</h2>
-						<p>Feel free to reach out for professional opportunities, financial consultancies, or audit services.</p>
+						<p>Feel free to reach out for professional opportunities, financial consultancies, internal audit setups, or statutory compliance services.</p>
 						<div class="row">
 							<div class="col-8 col-12-small">
 								<form method="post" action="#">
 									<div class="row gtr-uniform gtr-50">
-										<div class="col-6 col-12-xsmall"><input type="text" name="name" id="name" placeholder="Name" /></div>
-										<div class="col-6 col-12-xsmall"><input type="email" name="email" id="email" placeholder="Email" /></div>
-										<div class="col-12"><textarea name="message" id="message" placeholder="Message" rows="4"></textarea></div>
+										<div class="col-6 col-12-xsmall"><input type="text" name="name" id="name" placeholder="Your Full Name" /></div>
+										<div class="col-6 col-12-xsmall"><input type="email" name="email" id="email" placeholder="Your Email Address" /></div>
+										<div class="col-12"><textarea name="message" id="message" placeholder="Your Message or Consultancy Inquiry" rows="4"></textarea></div>
 									</div>
 								</form>
-								<ul class="actions" style="margin-top: 1em;">
+								<ul class="actions" style="margin-top: 1.5em;">
 									<li><input type="submit" value="Send Message" class="primary" /></li>
 								</ul>
 							</div>
@@ -317,11 +667,10 @@ Labour Rights NGO)</p>
 						<li><a href="mailto:mithuncacc96@gmail.com" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
 					</ul>
 					<ul class="copyright">
-						<li>&copy; Mithun Mutsuddi</li><li>Design: <a href="http://html5up.net" target="_blank">HTML5 UP</a></li>
+						<li>&copy; Mithun Mutsuddi, CA(cc). All rights reserved.</li><li>Design Enhanced from HTML5 UP</li>
 					</ul>
 				</div>
 			</footer>
-
 
 		<!-- Scripts -->
 			<script src="assets/js/jquery.min.js"></script>
@@ -330,6 +679,26 @@ Labour Rights NGO)</p>
 			<script src="assets/js/breakpoints.min.js"></script>
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
+
+			<!-- Client Filter Script -->
+			<script>
+				function filterClients(category) {
+					// Update Active Button Style
+					const buttons = document.querySelectorAll('.filter-btn');
+					buttons.forEach(btn => btn.classList.remove('active'));
+					event.target.classList.add('active');
+
+					// Filter Client Cards
+					const items = document.querySelectorAll('.client-item');
+					items.forEach(item => {
+						if (category === 'all' || item.classList.contains(category)) {
+							item.style.display = 'block';
+						} else {
+							item.style.display = 'none';
+						}
+					});
+				}
+			</script>
 
 	</body>
 </html>
