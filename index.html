@@ -4,6 +4,16 @@
 -->
 <html lang="en">
 	<head>
+		<!-- Google Analytics (gtag.js) -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=G-QSZG0VWWRC"></script>
+		<script>
+		  window.dataLayer = window.dataLayer || [];
+		  function gtag(){dataLayer.push(arguments);}
+		  gtag('js', new Date());
+
+		  gtag('config', 'G-QSZG0VWWRC');
+		</script>
+
 		<title>Mithun Mutsuddi, CA(cc) | Financial Analyst & Audit Professional</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
@@ -269,6 +279,7 @@
 						<li><a href="#gallery">Gallery</a></li>
 						<li><a href="#videos">Videos</a></li>
 						<li><a href="#insights">Articles</a></li>
+						<li><a href="#comments">Comments</a></li>
 						<li><a href="#contact">Contact</a></li>
 					</ul>
 				</nav>
@@ -616,6 +627,18 @@
 						</div>
 					</section>
 
+				<!-- Comments & Feedback Section -->
+					<section id="comments">
+						<h2>Comments &amp; Feedback</h2>
+						<script src="https://utteranc.es/client.js"
+						        repo="mithun-mutsuddi/mithun-mutsuddi.github.io"
+						        issue-term="pathname"
+						        theme="github-light"
+						        crossorigin="anonymous"
+						        async>
+						</script>
+					</section>
+
 				<!-- Contact Section -->
 					<section id="contact">
 						<h2>Get In Touch</h2>
@@ -666,6 +689,15 @@
 						<li><a href="https://wa.me/8801882191626" class="icon brands fa-whatsapp" target="_blank"><span class="label">WhatsApp</span></a></li>
 						<li><a href="mailto:mithuncacc96@gmail.com" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
 					</ul>
+					
+					<!-- Live Visitor Counter -->
+					<div style="text-align: center; margin: 20px 0;">
+					    <p style="font-size: 0.9em; margin-bottom: 5px; color: #cbd5e1;">Total Website Visitors</p>
+					    <a href="https://visitorcounterpiston.com" target="_blank">
+					        <img src="https://counter.sstatic.net/counter.png?page=mithun-mutsuddi.github.io" alt="Visitor Counter" />
+					    </a>
+					</div>
+
 					<ul class="copyright">
 						<li>&copy; Mithun Mutsuddi, CA(cc). All rights reserved.</li><li>Design Enhanced from HTML5 UP</li>
 					</ul>
@@ -686,7 +718,9 @@
 					// Update Active Button Style
 					const buttons = document.querySelectorAll('.filter-btn');
 					buttons.forEach(btn => btn.classList.remove('active'));
-					event.target.classList.add('active');
+					if(event && event.target) {
+						event.target.classList.add('active');
+					}
 
 					// Filter Client Cards
 					const items = document.querySelectorAll('.client-item');
