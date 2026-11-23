@@ -1,6 +1,6 @@
 /* Self-Hosted 13-Language i18n Engine for Mithun Mutsuddi, CA(cc)
-   100% CSP-compliant ('self'), zero innerHTML, on-demand JSON dictionary loading (~6 KB core),
-   bot-safe browser language auto-detection, ?lang= URL support, and full Arabic RTL support. */
+   100% CSP-compliant ('self'), zero innerHTML, strict allowlist validation (zero path traversal / prototype pollution),
+   unified dialog scroll-lock & focus restoration, dynamic string translation API, and full Arabic RTL support. */
 (function(){
   "use strict";
   var VALID = ["en-US","en-GB","bn","ar","zh-CN","zh-TW","ja","de","fr","es","pt","ru","it"];
@@ -10,21 +10,22 @@
     "fr":"FR","es":"ES","pt":"PT","ru":"RU","it":"IT"
   };
   var COUNTS = {
-    "en-US":"Showing {0} of {1} engagements",
-    "en-GB":"Showing {0} of {1} engagements",
-    "bn":"{1}টি এনগেজমেন্টের মধ্যে {0}টি দেখানো হচ্ছে",
-    "ar":"عرض {0} من أصل {1} مهمة تدقيق",
-    "zh-CN":"显示 {0} / {1} 个审计项目",
-    "zh-TW":"顯示 {0} / {1} 個稽核專案",
-    "ja":"全{1}件中 {0}件の監査案件を表示",
-    "de":"{0} von {1} Mandaten werden angezeigt",
-    "fr":"Affichage de {0} sur {1} missions",
-    "es":"Mostrando {0} de {1} encargos",
-    "pt":"Exibindo {0} de {1} trabalhos",
-    "ru":"Показано проектов: {0} из {1}",
-    "it":"Visualizzati {0} di {1} incarichi"
+    "en-US":"Showing {0} of {1} featured engagements.",
+    "en-GB":"Showing {0} of {1} featured engagements.",
+    "bn":"{1}টি নির্বাচিত এনগেজমেন্টের মধ্যে {0}টি দেখানো হচ্ছে",
+    "ar":"عرض {0} من أصل {1} مهمة تدقيق مختارة",
+    "zh-CN":"显示 {0} / {1} 个精选审计项目",
+    "zh-TW":"顯示 {0} / {1} 個精選稽核專案",
+    "ja":"全{1}件中 {0}件の主要監査案件を表示",
+    "de":"{0} von {1} ausgewählten Mandaten werden angezeigt",
+    "fr":"Affichage de {0} sur {1} missions sélectionnées",
+    "es":"Mostrando {0} de {1} encargos destacados",
+    "pt":"Exibindo {0} de {1} trabalhos em destaque",
+    "ru":"Показано избранных проектов: {0} из {1}",
+    "it":"Visualizzati {0} di {1} incarichi selezionati"
   };
-  var CACHE = {};
+  var COUNT_RE = /^Showing (\d+) of (\d+)(?: featured)? engagements\.?$/i;
+  var CACHE = Object.create(null);
 
   function norm(s){
     return String(s || "").replace(/\s+/g, " ").trim();
@@ -32,7 +33,7 @@
 
   function isCrawler(){
     var ua = (navigator.userAgent || "");
-    return /Googlebot|Bingbot|Slurp|DuckDuckBot|Baiduspider|YandexBot|Applebot|facebot|LinkedInBot/i.test(ua);
+    return /Googlebot|Bingbot|Slurp|DuckDuckBot|Baiduspider|YandexBot|Applebot|facebot|LinkedInBot|Twitterbot|WhatsApp/i.test(ua);
   }
 
   function matchBrowserLang(){
@@ -61,7 +62,7 @@
   function getQueryLang(){
     try {
       var q = new URLSearchParams(window.location.search).get("lang");
-      if(!q) return null;
+      if(!q || q.length > 12) return null;
       for(var i = 0; i < VALID.length; i++){
         if(VALID[i].toLowerCase() === q.toLowerCase()) return VALID[i];
       }
@@ -74,10 +75,26 @@
 
   function getBasePrefix(){
     var b = document.documentElement.getAttribute("data-i18n-base");
-    return b ? b : "";
+    return (b === "../") ? "../" : "";
+  }
+
+  function sanitizeDict(raw){
+    var clean = Object.create(null);
+    if(!raw || typeof raw !== "object" || Array.isArray(raw)) return clean;
+    var keys = Object.keys(raw);
+    for(var i = 0; i < keys.length; i++){
+      var k = keys[i];
+      if(k === "__proto__" || k === "constructor" || k === "prototype") continue;
+      if(typeof raw[k] === "string") clean[k] = raw[k];
+    }
+    return clean;
   }
 
   function loadDict(lang, cb){
+    if(VALID.indexOf(lang) === -1){
+      cb(Object.create(null));
+      return;
+    }
     if(CACHE[lang]){
       cb(CACHE[lang]);
       return;
@@ -86,22 +103,37 @@
     fetch(url, {credentials: "same-origin"})
       .then(function(r){ return r.ok ? r.json() : {}; })
       .then(function(data){
-        CACHE[lang] = data || {};
+        CACHE[lang] = sanitizeDict(data);
         cb(CACHE[lang]);
       })
       .catch(function(){
-        CACHE[lang] = {};
+        CACHE[lang] = Object.create(null);
         cb(CACHE[lang]);
       });
   }
 
+  var BN_DIGITS = ["০","১","২","৩","৪","৫","৬","৭","৮","৯"];
+  function localizeDigits(str, lang){
+    if(lang === "bn"){
+      return String(str).replace(/\d/g, function(d){ return BN_DIGITS[+d] || d; });
+    }
+    return String(str);
+  }
+
   function translateString(orig, lang, dict){
     if(dict && Object.prototype.hasOwnProperty.call(dict, orig)) return dict[orig];
-    var m = /^Showing (\d+) of (\d+) engagements$/i.exec(orig);
+    var m = COUNT_RE.exec(orig);
     if(m && COUNTS[lang]){
-      return COUNTS[lang].replace("{0}", m[1]).replace("{1}", m[2]);
+      return COUNTS[lang]
+        .replace("{0}", localizeDigits(m[1], lang))
+        .replace("{1}", localizeDigits(m[2], lang));
     }
     return orig;
+  }
+
+  function syncScrollLock(){
+    var anyOpen = !!document.querySelector(".dialog:not([hidden])");
+    document.body.style.overflow = anyOpen ? "hidden" : "";
   }
 
   function syncHeaderUI(lang){
@@ -194,10 +226,12 @@
     new MutationObserver(function(){
       if(busy || currentLang === "en-US" || currentLang === "en-GB") return;
       var txt = norm(rc.textContent);
-      var m = /^Showing (\d+) of (\d+) engagements$/i.exec(txt);
+      var m = COUNT_RE.exec(txt);
       if(m && COUNTS[currentLang]){
         busy = true;
-        rc.textContent = COUNTS[currentLang].replace("{0}", m[1]).replace("{1}", m[2]);
+        rc.textContent = COUNTS[currentLang]
+          .replace("{0}", localizeDigits(m[1], currentLang))
+          .replace("{1}", localizeDigits(m[2], currentLang));
         busy = false;
       }
     }).observe(rc, {childList: true, characterData: true, subtree: true});
@@ -205,16 +239,21 @@
 
   var langBtn = document.getElementById("langBtn");
   var langModal = document.getElementById("langModal");
+  var lastLangFocus = null;
   function openLangModal(){
     if(!langModal) return;
+    lastLangFocus = document.activeElement;
     langModal.hidden = false;
+    syncScrollLock();
     var first = langModal.querySelector(".lang-opt.active") || langModal.querySelector(".lang-opt");
     if(first) first.focus();
   }
   function closeLangModal(){
-    if(!langModal) return;
+    if(!langModal || langModal.hidden) return;
     langModal.hidden = true;
-    if(langBtn) langBtn.focus();
+    syncScrollLock();
+    var target = (lastLangFocus && typeof lastLangFocus.focus === "function") ? lastLangFocus : langBtn;
+    if(target) target.focus();
   }
   if(langBtn) langBtn.addEventListener("click", openLangModal);
   if(langModal){
@@ -226,6 +265,7 @@
       var btn = e.target && e.target.closest(".lang-opt[data-set-lang]");
       if(btn){
         var target = btn.getAttribute("data-set-lang");
+        if(VALID.indexOf(target) === -1) return;
         if(document.documentElement.getAttribute("data-fixed-lang")){
           try { localStorage.setItem("mm-lang", target); } catch(err){}
           window.location.href = "../?lang=" + encodeURIComponent(target);
@@ -237,20 +277,31 @@
     });
   }
   document.addEventListener("keydown", function(e){
-    if(e.key === "Escape" && langModal && !langModal.hidden) closeLangModal();
+    if(e.key === "Escape" && langModal && !langModal.hidden){
+      closeLangModal();
+    }
   });
 
   window.MM_I18N = {
     setLanguage: function(l){ return applyLanguage(l, true); },
     getLanguage: function(){ return currentLang; },
-    languages: VALID
+    t: function(s){
+      var k = norm(s);
+      if(!k) return "";
+      return translateString(k, currentLang, CACHE[currentLang] || null);
+    },
+    syncScrollLock: syncScrollLock,
+    languages: VALID.slice()
   };
 
   var fixed = document.documentElement.getAttribute("data-fixed-lang");
   var qLang = getQueryLang();
   var saved = null;
   try { saved = localStorage.getItem("mm-lang"); } catch(e){}
-  if(saved && VALID.indexOf(saved) === -1) saved = null;
+  if(saved && VALID.indexOf(saved) === -1){
+    try { localStorage.removeItem("mm-lang"); } catch(e){}
+    saved = null;
+  }
 
   if(fixed && VALID.indexOf(fixed) !== -1){
     currentLang = fixed;

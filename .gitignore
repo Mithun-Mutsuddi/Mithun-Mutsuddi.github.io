@@ -1,0 +1,33 @@
+# Security & Exposure Prevention (.gitignore)
+# Prevent accidental commits of secrets, credentials, backups, private CVs, and dev artifacts.
+.env
+.env.*
+*.pem
+*.key
+*.p12
+*.pfx
+*secret*
+*credentials*
+.gh_pending_device.json
+
+# Private / unredacted documents & database dumps
+*my-cv*.pdf
+*-full-cv*.pdf
+*.sql
+*.sqlite
+*.sqlite3
+*.db
+*.bak
+*.backup
+*.orig
+*~
+
+# Debug / build / OS artifacts
+*.map
+*.log
+.DS_Store
+Thumbs.db
+__pycache__/
+.pytest_cache/
+node_modules/
+.venv/
