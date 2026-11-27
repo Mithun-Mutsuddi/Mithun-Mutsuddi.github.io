@@ -1,0 +1,46 @@
+# Cloudflare Pages headers — v2026-11
+# Security, caching and privacy defaults for the whole site.
+# NOTE: Cloudflare Pages serves these on the edge, so they apply even to
+# files that GitHub Pages could not configure (JS/CSS/images).
+
+/*
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: SAMEORIGIN
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=(), usb=(), interest-cohort=()
+  Cross-Origin-Opener-Policy: same-origin
+  Strict-Transport-Security: max-age=31536000; includeSubDomains
+  Content-Security-Policy: upgrade-insecure-requests; default-src 'self'; base-uri 'self'; object-src 'none'; img-src 'self' data: https://i.ytimg.com https://hits.sh https://www.google-analytics.com https://*.google-analytics.com https://analytics.google.com https://www.googletagmanager.com https://*.googletagmanager.com https://stats.g.doubleclick.net https://www.google.com https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' data: https://fonts.gstatic.com; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://static.cloudflareinsights.com; connect-src 'self' https://formspree.io https://*.workers.dev https://www.google-analytics.com https://*.google-analytics.com https://analytics.google.com https://*.analytics.google.com https://www.googletagmanager.com https://*.googletagmanager.com https://stats.g.doubleclick.net https://www.google.com https://cloudflareinsights.com https://static.cloudflareinsights.com; frame-src https://www.youtube-nocookie.com; form-action 'self' mailto: https://formspree.io
+
+# HTML documents: always revalidate so a deploy is visible instantly
+/*.html
+  Cache-Control: public, max-age=0, must-revalidate
+
+/
+  Cache-Control: public, max-age=0, must-revalidate
+
+# Fingerprinted-by-name static assets: long cache, they rarely change
+/images/*
+  Cache-Control: public, max-age=2592000, stale-while-revalidate=86400
+
+# Language dictionaries: 1 day in browser, 1 week at the edge; new deploys still win
+/i18n/*
+  Cache-Control: public, max-age=86400, stale-while-revalidate=604800
+  Access-Control-Allow-Origin: same-origin
+
+/assets-fallback.js
+  Cache-Control: public, max-age=604800, stale-while-revalidate=86400
+
+/i18n.js
+  Cache-Control: public, max-age=3600, stale-while-revalidate=86400
+
+/sitemap.xml
+  Content-Type: application/xml; charset=utf-8
+  Cache-Control: public, max-age=3600
+
+/robots.txt
+  Cache-Control: public, max-age=3600
+
+/.well-known/security.txt
+  Content-Type: text/plain; charset=utf-8
+  Cache-Control: public, max-age=86400

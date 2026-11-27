@@ -1,0 +1,32 @@
+# Cloudflare Worker — Portfolio API
+# Deploy:  npm run deploy:worker
+# Secrets: npm run worker:secret -- RESEND_API_KEY   (etc. see README-DEPLOY-BN.md)
+
+name = "mithun-portfolio-api"
+main = "src/index.js"
+compatibility_date = "2025-01-01"
+
+# ---- Optional bindings (uncomment what you use) ----
+
+# 1) Rate limiting across all edge nodes (free: 1 KV namespace, 100k reads/day)
+# [[kv_namespaces]]
+# binding = "RATE_KV"
+# id = "REPLACE_WITH_KV_NAMESPACE_ID"
+
+# 3) Database option: D1 (SQLite, free 5 GB) instead of Supabase/Neon
+# [[d1_databases]]
+# binding = "DB"
+# database_name = "mithun_portfolio"
+# database_id = "REPLACE_WITH_D1_ID"
+
+# 4) Workers AI (free daily neurons) for /api/ai
+# [ai]
+# binding = "AI"
+
+[observability]
+enabled = true
+
+# Custom domain for the API (optional):
+# [[routes]]
+# pattern = "api.yourdomain.com/*"
+# zone_name = "yourdomain.com"

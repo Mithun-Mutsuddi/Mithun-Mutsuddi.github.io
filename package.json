@@ -1,0 +1,16 @@
+{
+  "name": "mithun-mutsuddi-portfolio",
+  "private": true,
+  "version": "2026.11.0",
+  "description": "Official portfolio of Mithun Mutsuddi, CA(cc) \u2014 static frontend on Cloudflare Pages, API on Cloudflare Workers",
+  "scripts": {
+    "dev": "wrangler pages dev . --port 8788",
+    "deploy": "wrangler pages deploy . --project-name mithun-mutsuddi",
+    "deploy:worker": "wrangler deploy --config worker/wrangler.toml",
+    "worker:dev": "wrangler dev --config worker/wrangler.toml",
+    "test": "node scripts/smoke.mjs"
+  },
+  "devDependencies": {
+    "wrangler": "^3.99.0"
+  }
+}

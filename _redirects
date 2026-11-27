@@ -1,0 +1,31 @@
+# Cloudflare Pages redirects — v2026-11
+# 1) Canonical host: force the custom domain (edit DOMAIN after you connect one).
+#    Uncomment and replace example.com when your custom domain is live:
+# https://mithun-mutsuddi.github.io/*  https://example.com/:splat  301
+# https://www.example.com/*            https://example.com/:splat  301
+#
+# 2) Normalize accidental double slashes and uppercase paths to the real files.
+/BN/*  /bn/:splat  301
+/AR/*  /ar/:splat  301
+/EN-US/*  /en-us/:splat  301
+/EN-GB/*  /en-gb/:splat  301
+/ZH-CN/*  /zh-cn/:splat  301
+/ZH-TW/*  /zh-tw/:splat  301
+/JA/*  /ja/:splat  301
+/DE/*  /de/:splat  301
+/FR/*  /fr/:splat  301
+/ES/*  /es/:splat  301
+/PT/*  /pt/:splat  301
+/RU/*  /ru/:splat  301
+/IT/*  /it/:splat  301
+/index.htm  /  301
+/index.html  /  301
+
+# 3) Friendly aliases for the insight articles
+/erp-audit  /erp-audit-cost-management-bangladesh.html  301
+/internal-audit  /internal-audit-controls-bangladesh.html  301
+/statutory-audit  /statutory-forensic-audit-bangladesh.html  301
+/icab  /icab-ca-governance-mithun-mutsuddi.html  301
+/portfolio-list  /audit-portfolio-bangladesh.html  301
+
+# 4) 404 fallback handled by 404.html automatically (Pages serves it with a 404 status)
