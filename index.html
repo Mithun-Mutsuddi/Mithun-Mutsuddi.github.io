@@ -1583,5 +1583,12 @@ var FORM_ENDPOINT = ""; /* legacy Formspree (optional) */
   </div>
 </div>
 <script defer src="i18n.js"></script>
+  <script>
+document.addEventListener('DOMContentLoaded', function() {
+  document.querySelectorAll('.counter').forEach(el => {
+    el.textContent = el.getAttribute('data-target');
+  });
+});
+</script>
 </body>
 </html>
